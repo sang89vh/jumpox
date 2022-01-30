@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "com.satochi2017.mask",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "INSTANT_APP_MANIFEST"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 9,
+        "versionName": "9.0",
+        "outputFile": "android_debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.satochi2017.mask",
+        "split": "",
+        "minSdkVersion": "18"
+      }
+    }
+  ]
+}

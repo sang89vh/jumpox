@@ -1,0 +1,265 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/player/player_001.png" type="Texture" id=2]
+[ext_resource path="res://addons/smoothing/smoothing_2d.gd" type="Script" id=3]
+[ext_resource path="res://src/Actors/Trail/Trail2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Actors/Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://src/VFX/Explosion/Explosion.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "dash"
+
+[sub_resource type="Animation" id=2]
+length = 2.1
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Smoothing2D/Sprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -1.37, 0.0246119, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Smoothing2D/Sprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -1.39, 0.0229189, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 2.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Smoothing2D/Sprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -1.37, 0.0246119, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Smoothing2D/Sprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -1.39, 0.0229189, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "done_starting"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8 )
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 2,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 125.681, 127.628 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 31.4858, 32.1732 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 10, 4.22423 )
+
+[sub_resource type="CanvasItemMaterial" id=9]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=10]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.012024, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -104.727 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="Curve" id=12]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 68.6364 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.197266, 0.4625 ), 0.0, 0.0, 0, 0, Vector2( 0.474609, 0.344318 ), 0.0, 0.0, 0, 0, Vector2( 0.738281, 0.344318 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
+
+[sub_resource type="Curve" id=16]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+lifetime_randomness = 1.0
+trail_size_modifier = SubResource( 17 )
+emission_shape = 2
+emission_box_extents = Vector3( 0, 10, 0 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -10.0
+angular_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_curve = SubResource( 13 )
+angle = 10.0
+angle_random = 1.0
+angle_curve = SubResource( 11 )
+scale = 80.0
+scale_random = 1.0
+scale_curve = SubResource( 15 )
+color = Color( 0.9375, 0.402775, 0.168457, 1 )
+anim_speed = 10.0
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_mask = 4
+script = ExtResource( 1 )
+speed = Vector2( 700, 1350 )
+
+[node name="Smoothing2D" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Smoothing2D"]
+texture = ExtResource( 2 )
+
+[node name="Trail2D" parent="Smoothing2D/Sprite" instance=ExtResource( 5 )]
+show_behind_parent = true
+z_index = -2
+points = PoolVector2Array( 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+width = 30.0
+target_path = NodePath("../../Smoothing2D/Sprite")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dash = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump_up = SubResource( 4 )
+anims/run = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.255, 0.255 )
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_bottom = 1080
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+script = ExtResource( 8 )
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+shape = SubResource( 7 )
+
+[node name="TrapDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4160
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrapDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+shape = SubResource( 7 )
+
+[node name="RawDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+shape = SubResource( 7 )
+
+[node name="WaterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+modulate = Color( 0.337255, 0.223529, 1, 1 )
+shape = SubResource( 7 )
+
+[node name="StompDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
+position = Vector2( 0, 33 )
+scale = Vector2( 3.16, 1 )
+shape = SubResource( 8 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+show_behind_parent = true
+material = SubResource( 9 )
+use_parent_material = true
+position = Vector2( 0, 10 )
+scale = Vector2( 0.4, 0.4 )
+amount = 40
+lifetime = 4.0
+speed_scale = 5.0
+process_material = SubResource( 18 )
+
+[node name="Explosion" parent="." instance=ExtResource( 9 )]
+
+[connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+[connection signal="area_entered" from="TrapDetector" to="." method="_on_TrapDetector_area_entered"]
+[connection signal="area_exited" from="RawDetector" to="." method="_on_RawDetector_area_exited"]
+[connection signal="area_entered" from="WaterDetector" to="." method="_on_WaterDetector_area_entered"]
+[connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/enemies/saw_glow7.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/saw_glow17.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 251.55
+
+[sub_resource type="Animation" id=2]
+length = 16.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 360.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D3:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 350.0 ]
+}
+
+[node name="CircularRaw" type="Area2D" groups=[
+"CircularRaws",
+]]
+collision_layer = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 1 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+rotation = 3.46103
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+range_layer_min = -1
+
+[node name="Light2D3" type="Light2D" parent="."]
+rotation = 2.74376
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+range_layer_min = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "rotate"
+playback_speed = 10.0
+method_call_mode = 1
+anims/rotate = SubResource( 2 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true

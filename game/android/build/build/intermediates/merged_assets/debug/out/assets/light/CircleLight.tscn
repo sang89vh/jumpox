@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/enemies/circle_02.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/circle_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/background/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/light/light.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "toggle"
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 1, 1 ), Vector2( 0.2, 0.2 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 0.5, 0.5 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.5, 0.5 ), Vector2( 0.1, 0.1 ), Vector2( 0.5, 0.5 ), Vector2( 0, 0 ), Vector2( 0.5, 0.5 ), Vector2( 0, 0 ), Vector2( 0.0100592, 0.0100592 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Light2D3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 0.965936, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.2, 0.2 ), Vector2( 1, 1 ), Vector2( 0.2, 0.2 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[node name="CircleLight" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.952456, 0.952456 )
+texture = ExtResource( 2 )
+energy = 0.688195
+range_layer_min = -1
+
+[node name="Light2D2" type="Light2D" parent="."]
+scale = Vector2( 0.476228, 0.476228 )
+texture = ExtResource( 1 )
+energy = 1.04529
+range_layer_min = -1
+
+[node name="Light2D3" type="Light2D" parent="."]
+scale = Vector2( 0.952456, 0.952456 )
+texture = ExtResource( 4 )
+energy = 0.936042
+range_layer_min = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "toggle"
+anims/toggle = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )

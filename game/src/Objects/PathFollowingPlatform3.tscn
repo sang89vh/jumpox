@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Levels/Path2D.gd" type="Script" id=1]
+[ext_resource path="res://src/Objects/MovingPlatform3.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0.00256348, 0.207909, 0, 0, 0, 0, -0.0674343, -512.094 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.143362, -0.132406, 0.55068, 0.508595, 1, -0.402454, -0.432427, 1.20083, 1.29026, 0.9, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.5 )
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../..:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5, 2.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+
+[node name="PathFollowingPlatform3" type="Node2D"]
+
+[node name="PathFollowingPlatform" type="Path2D" parent="."]
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="PathFollowingPlatform"]
+position = Vector2( 200, -400 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathFollowingPlatform"]
+position = Vector2( 0.00256348, 0.207909 )
+rotate = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollowingPlatform/PathFollow2D"]
+remote_path = NodePath("../../../MovingPlatform3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollowingPlatform/PathFollow2D"]
+anims/Move = SubResource( 2 )
+
+[node name="MovingPlatform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0.00256348, 0.207909 )
+
+[connection signal="screen_entered" from="PathFollowingPlatform/VisibilityNotifier2D" to="PathFollowingPlatform" method="_on_VisibilityNotifier2D_screen_entered"]

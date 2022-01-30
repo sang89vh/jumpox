@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/object/chainlink.png" type="Texture" id=2]
+
+[node name="ChainLink" type="Node2D"]
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -177, 0 )
+texture = ExtResource( 2 )
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 177, 0 )
+texture = ExtResource( 2 )
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( -353, 0 )
+texture = ExtResource( 2 )
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( 348, 0 )
+texture = ExtResource( 2 )

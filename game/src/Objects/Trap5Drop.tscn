@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Objects/Trap5Drop.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemies/saw_glow30.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/chain_glow23.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/saw_glow29.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/trap_003.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 62.256, 60.8691 )
+
+[node name="TrapRigidBody2D" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+gravity_scale = 12.0
+sleeping = true
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite2" type="Sprite" parent="RigidBody2D"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource( 1 )
+
+[node name="RigidBody2D7" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+gravity_scale = 10.0
+sleeping = true
+angular_velocity = 1.0
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite7" type="Sprite" parent="RigidBody2D7"]
+position = Vector2( -242.804, 0 )
+rotation = -1.5708
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D7"]
+position = Vector2( -242.804, 0 )
+shape = SubResource( 1 )
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+gravity_scale = 8.0
+sleeping = true
+linear_velocity = Vector2( 0, 2 )
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+position = Vector2( -122, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D2"]
+position = Vector2( -122, 0 )
+texture = ExtResource( 2 )
+
+[node name="RigidBody2D3" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+gravity_scale = 6.0
+sleeping = true
+linear_velocity = Vector2( 0, 3 )
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite3" type="Sprite" parent="RigidBody2D3"]
+position = Vector2( 122, 0 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D3"]
+position = Vector2( 122, 0 )
+shape = SubResource( 1 )
+
+[node name="RigidBody2D4" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+gravity_scale = 4.0
+sleeping = true
+linear_velocity = Vector2( 0, 4 )
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite4" type="Sprite" parent="RigidBody2D4"]
+position = Vector2( 0, -148.771 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D4"]
+position = Vector2( 0, -121.771 )
+shape = SubResource( 1 )
+
+[node name="RigidBody2D5" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+mass = 10.0
+gravity_scale = 2.0
+sleeping = true
+linear_velocity = Vector2( 0, 1 )
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite5" type="Sprite" parent="RigidBody2D5"]
+position = Vector2( 0, 122 )
+rotation = 3.14159
+scale = Vector2( 1.25, 1 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D5"]
+position = Vector2( 0, 122 )
+shape = SubResource( 1 )
+
+[node name="RigidBody2D6" type="RigidBody2D" parent="."]
+collision_layer = 64
+collision_mask = 5
+sleeping = true
+linear_velocity = Vector2( 0, 6 )
+angular_velocity = 1.0
+applied_force = Vector2( 0, 10 )
+applied_torque = 10.0
+
+[node name="Sprite6" type="Sprite" parent="RigidBody2D6"]
+position = Vector2( 243.055, 0 )
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D6"]
+position = Vector2( 243.055, 0 )
+shape = SubResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -306, 0 )
+enabled = true
+cast_to = Vector2( 0, 800 )

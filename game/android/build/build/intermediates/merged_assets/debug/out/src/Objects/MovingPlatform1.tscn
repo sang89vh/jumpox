@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/tileset/128/tileset_002.png" type="Texture" id=1]
+[ext_resource path="res://assets/tileset/128/tileset_12.png" type="Texture" id=2]
+[ext_resource path="res://src/VFX/DirectionLight/DirectLight.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64.0227, 13.3351 )
+
+[node name="MovingPlatform1" type="KinematicBody2D"]
+collision_layer = 512
+
+[node name="DirectLight" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0.594604, -279.471 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -192 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, -64 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.52588e-05, -128.265 )
+scale = Vector2( 1, 9.52 )
+shape = SubResource( 1 )

@@ -1,0 +1,4 @@
+#Sun May 16 13:07:58 ICT 2021
+base.0=D\:\\GODOT\\godot\\GeomatryDashGodot\\game\\android\\build\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

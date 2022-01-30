@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Levels/Path2D.gd" type="Script" id=1]
+[ext_resource path="res://src/Objects/MovingPlatform0.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -1.69919, 0.0629883, 0, 0, 0, 0, -2.30944, -0.984251, 0, 0, 0, 0, 674.278, 706.484, 0, 0, 0, 0, -3.28125, 713.962, 0, 0, 0, 0, -338.42, 716.482, 0, 0, 0, 0, -580.325, 719.002 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Move"
+length = 7.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.143362, -0.139225, 0.363214, 0.352733, 0.3, -0.631336, -0.54414, 0.25, 0.215471, 1, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.6, 3, 4.5, 6, 7.5 )
+}
+
+[node name="Node2DPathFollowingPlatform0" type="Node2D"]
+
+[node name="PathFollowingPlatform" type="Path2D" parent="."]
+position = Vector2( 0, -457 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="PathFollowingPlatform"]
+position = Vector2( -1.91919, 407.737 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathFollowingPlatform"]
+position = Vector2( -1.69919, 0.0629883 )
+rotation = 0.746551
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollowingPlatform/PathFollow2D"]
+remote_path = NodePath("../../MovingPlatform0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PathFollowingPlatform/PathFollow2D"]
+anims/Move = SubResource( 2 )
+
+[node name="MovingPlatform0" parent="PathFollowingPlatform" instance=ExtResource( 2 )]
+position = Vector2( -1.69919, 0.0629883 )
+rotation = 0.746551
+
+[connection signal="screen_entered" from="PathFollowingPlatform/VisibilityNotifier2D" to="PathFollowingPlatform" method="_on_VisibilityNotifier2D_screen_entered"]

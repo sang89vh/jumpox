@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/light/direction_light.png" type="Texture" id=1]
+[ext_resource path="res://src/VFX/DirectionLight/DirectLight.gd" type="Script" id=2]
+[ext_resource path="res://assets/light/light_004.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 52.9504, 8.88901 )
+
+[node name="DirectLight" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.85, 1 )
+texture = ExtResource( 1 )
+color = Color( 0.176471, 0.886275, 0.321569, 1 )
+energy = 2.0
+range_layer_min = -1
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 0, 95.562 )
+scale = Vector2( 0.199152, 0.184196 )
+enabled = false
+texture = ExtResource( 3 )
+
+[node name="Area2DDirectLight" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2147483649
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDirectLight"]
+position = Vector2( 0, 14.485 )
+scale = Vector2( 1.22087, 1.19617 )
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, 14.578 )
+scale = Vector2( 6.48953, 2.48682 )
+process_parent = true
+physics_process_parent = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2DDirectLight" to="." method="_on_Area2DDirectLight_body_entered"]
+[connection signal="body_exited" from="Area2DDirectLight" to="." method="_on_Area2DDirectLight_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
